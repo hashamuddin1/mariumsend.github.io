@@ -43,4 +43,18 @@ const deletecitizen = async(req, res) => {
     }
 }
 
-module.exports = { fullname, deletecitizen, allcitizen, addcitizen }
+//update a citizen
+const updcit = async(req, res) => {
+    try {
+        const _id = req.query.id;
+        const getstdspe = await citizen_detail.findByIdAndUpdate(_id, req.body, {
+            new: true //new updated value usi waqt mil jae uskay liye kia hay
+        })
+        res.send(getstdspe)
+    } catch (e) {
+        console.log(e)
+        res.send(e)
+    }
+}
+
+module.exports = { fullname, updcit, deletecitizen, allcitizen, addcitizen }
