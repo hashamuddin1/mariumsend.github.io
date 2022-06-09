@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { fullname, updcit, deletecitizen, allcitizen, addcitizen } = require('../controller/demo')
+const { fullname, updcit, matchname, sort_age, deletecitizen, allcitizen, addcitizen } = require('../controller/demo')
 
 //CRUD APIs
 //C CREATE
@@ -16,5 +16,9 @@ router.post("/api/insertcitizen", addcitizen)
 router.delete("/api/delcit", deletecitizen)
     //update a citizen
 router.put("/api/updcit", updcit)
+    //sort acc to age
+router.get("/api/sortage", sort_age)
+    //matchname
+router.get("/api/matchname", matchname)
 
 module.exports = router

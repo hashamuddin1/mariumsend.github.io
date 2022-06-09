@@ -48,7 +48,7 @@ const updcit = async(req, res) => {
     try {
         const _id = req.query.id;
         const getstdspe = await citizen_detail.findByIdAndUpdate(_id, req.body, {
-            new: true //new updated value usi waqt mil jae uskay liye kia hay
+            new: true
         })
         res.send(getstdspe)
     } catch (e) {
@@ -57,4 +57,24 @@ const updcit = async(req, res) => {
     }
 }
 
-module.exports = { fullname, updcit, deletecitizen, allcitizen, addcitizen }
+//sorting according to age
+const sort_age = async(req, res) => {
+    try {
+        const sort1 = await citizen_detail.find({}).sort({ age: -1 })
+        res.send(sort1)
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+//jiski lastname khan hay
+const matchname = async(req, res) => {
+    try {
+        const match1 = await citizen_detail.aggregate([{ $match: { lastname: "khan" } }])
+        res.send(match1)
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+module.exports = { fullname, matchname, sort_age, updcit, deletecitizen, allcitizen, addcitizen }
